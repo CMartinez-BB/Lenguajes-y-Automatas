@@ -1,0 +1,13 @@
+statement ::=   "PRINT" ( expresion | string ) nl |
+                "IF" comparacion "THEN" nl {statement} "ENDIF" nl |
+                "WHILE" comparacion "REPEAT" nl {statement} "ENDWHILE" nl |
+                "LABEL" ident nl |
+                "LET" ident "=" expresion nl |
+                
+
+comparacion::= expresion ( ("==" | "!=" | ">" | "<" | ">=" | "<=" )  expresion)+
+expresion ::= term {( "+" | "-" ) term}
+term ::= unary { [  "/" | "*" ] unary }
+unary ::= [  "+" | "-" ] primary
+primary ::= number | ident
+nl::= '\n'+
